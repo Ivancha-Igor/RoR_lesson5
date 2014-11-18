@@ -1,0 +1,16 @@
+.content
+  - if current_user
+    p.create-post
+      b #{current_user.name},
+      = link_to ' создать новую запись?', new_post_path
+  - @posts.each do |post|
+    h2= post.title
+    p= post.body
+    p
+      | Теги: #{post.tags}
+    p
+      | Создал: #{post.user.name}
+    ul.edit-list
+      li= link_to 'Показать', post
+      li= link_to 'Редактировать', edit_post_path(post)
+      li= link_to 'Удалить', post, method: :delete, data: { confirm: 'Are you sure?' }

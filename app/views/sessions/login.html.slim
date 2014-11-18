@@ -1,0 +1,12 @@
+h1 Вход
+= form_tag('/sessions', method: :post) do
+  .field
+    = label_tag 'Эл.почта'
+    br/
+    = text_field_tag :email
+  .field
+    = label_tag 'Пароль'
+    br/
+    = password_field_tag :password
+  .actions
+    = submit_tag 'Вход'
