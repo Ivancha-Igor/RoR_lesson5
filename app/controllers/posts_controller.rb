@@ -6,11 +6,21 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @posts,except: [:updated_at, :user_id], :include => {:user => {:only => :name}}}
+    end
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {render json: @post,except: [:updated_at, :user_id], :include => {:user => {:only => :name}}}
+    end
   end
 
   # GET /posts/new
